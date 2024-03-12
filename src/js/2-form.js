@@ -18,7 +18,7 @@ const loadForm = () => {
     form.elements.message.value = message;
   }
 };
-form.addEventListener('submit', e => {
+form.addEventListener('submit', e => {e.preventDefault();
   if (form.elements.email.value === '') {
     alert('Please enter your email');
   }
@@ -30,7 +30,6 @@ form.addEventListener('submit', e => {
     email: form.elements.email.value.trim(),
     message: form.elements.message.value.trim(),
   });
-  e.preventDefault();
   localStorage.removeItem('form');
   form.reset();
 });
