@@ -8,6 +8,8 @@ const saveForm = () => {
   localStorage.setItem('form', JSON.stringify(formData));
 };
 
+form.addEventListener('input', saveForm);
+
 const loadForm = () => {
   const saveData = localStorage.getItem('form');
   if (saveData) {
@@ -16,14 +18,7 @@ const loadForm = () => {
     form.elements.message.value = message;
   }
 };
-
-form.addEventListener('input', saveForm);
-
-window.addEventListener('load', loadForm);
-
 form.addEventListener('submit', e => {
-  e.preventDefault();
-  localStorage.removeItem('form');
   if (form.elements.email.value === '') {
     alert('Please enter your email');
   }
@@ -35,6 +30,7 @@ form.addEventListener('submit', e => {
     email: form.elements.email.value.trim(),
     message: form.elements.message.value.trim(),
   });
-
+  e.preventDefault();
+  localStorage.removeItem('form');
   form.reset();
 });
