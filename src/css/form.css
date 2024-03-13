@@ -2,7 +2,7 @@ body {
     max-width: 1440px;
     overflow-x: hidden;
   }
-  .form {
+  .feedback-form {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -14,7 +14,7 @@ body {
     margin: 0 auto;
   }
   
-  .form label {
+  .feedback-form label {
     display: flex;
     flex-direction: column;
     font: 400 16px / 1.5 'Montserrat', sans-serif;
@@ -22,7 +22,7 @@ body {
     color: #2e2f42;
     row-gap: 8px;
   }
-  .form input {
+  .feedback-form input {
     width: 360px;
     height: 40px;
     outline: transparent;
@@ -31,18 +31,18 @@ body {
     transition: border 0.5s ease;
     padding-left: 12px;
   }
-  .form input:hover,
-  .form textarea:hover {
+  .feedback-form input:hover,
+  .feedback-form textarea:hover {
     border: 1px solid #000000;
   }
-  .form textarea,
-  .form input {
+  .feedback-form textarea,
+  .feedback-form input {
     font: 400 16px / 1.5 'Montserrat', sans-serif;
     letter-spacing: 0.04em;
     color: #2e2f42;
   }
   
-  .form textarea {
+  .feedback-form textarea {
     width: 360px;
     height: 80px;
     resize: none;
@@ -53,10 +53,7 @@ body {
     padding-left: 12px;
     padding-top: 8px;
   }
-  /* .feedback-form textarea:active {
-    border: 1px solid #808080;
-  } */
-  .form button {
+  .feedback-form button {
     background: #4e75ff;
     border-radius: 8px;
     padding: 8px 16px;
