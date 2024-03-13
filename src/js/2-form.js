@@ -1,38 +1,30 @@
 const form = document.querySelector(".feedback-form");
-let saveInfo;
-
-const saveForm = () => {
-  const formData = {
-    email: saveInfo.elements.email.value.trim(),
-    message: saveInfo.elements.message.value.trim(),
-  };
-  localStorage.setItem('feedback-form-state', JSON.stringify(saveInfo));
+let saveInfo = {};
+const storageKey = 'feedback-form-state';
+const emailInput = document.querySelector('input[name="email"]');
+const messageInput = document.querySelector('textarea[name="message"]');
+const saveForm = (evt) => {
+  saveInfo[evt.target.name] = evt.target.value;
+  localStorage.setItem(storageKey, JSON.stringify(saveInfo));
 };
-
+form.addEventListener('input', saveForm);
 const loadForm = () => {
-  const saveData = localStorage.getItem('feedback-form-state');
+  const saveData = localStorage.getItem(storageKey);
   if (saveData) {
-    const { email, message } = JSON.parse(saveData);
-    saveInfo.elements.email.value = email;
-    saveInfo.elements.message.value = message;
+    saveInfo = JSON.parse(saveData) || {}; 
+    emailInput.value = saveInfo.email || ''; 
+    messageInput.value = saveInfo.message || '';
   }
 };
 loadForm();
-
 form.addEventListener('submit', e => {
   e.preventDefault();
-  if (form.elements.email.value === '') {
-    alert('Please enter your email');
+  if (emailInput.value.trim() === '' || messageInput.value.trim() === '') {
+    alert('Please, fill in all fields');
+    return;
+  }else{
+    localStorage.removeItem(storageKey);
+    form.reset();
+    console.log(saveInfo);
   }
-  if (form.elements.message.value === '') {
-    alert('Please enter your message');
-  }
-
-  console.log({
-    email: form.elements.email.value.trim(),
-    message: form.elements.message.value.trim(),
-  });
-
-  localStorage.removeItem('feedback-form-state');
-  form.reset();
 });
